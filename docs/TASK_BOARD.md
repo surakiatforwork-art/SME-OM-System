@@ -41,6 +41,7 @@ Last updated: 2026-10-08
 - Added automatic storefront refresh on focus/visibility/online recovery while respecting the 90-second soft refresh window
 - Added admin sync recovery when the browser comes back online
 - Added reduced-motion accessibility fallback so 3D loaders and micro-interactions respect the user's OS preference
+- Hardened Vercel production deployment: live Apps Script fallback URL, mock bootstrap support, legacy backend fallback, and explicit Vite build/output routing
 
 ## In Progress
 

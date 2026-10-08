@@ -1,0 +1,1 @@
+import{j as s}from"./index-cN1OIyjD.js";function x({label:l,children:t,hint:a,error:e}){return s.jsxs("label",{className:"grid gap-2",children:[s.jsx("span",{className:"label",children:l}),t,a&&!e?s.jsx("span",{className:"text-xs text-cocoa-500",children:a}):null,e?s.jsx("span",{className:"text-xs font-medium text-red-600",children:e}):null]})}export{x as F};

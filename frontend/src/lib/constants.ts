@@ -4,10 +4,13 @@ import type { PaymentStatus } from "../types/payment";
 export const APP_NAME =
   import.meta.env.VITE_APP_NAME?.trim() || "SME OM System";
 
-export const API_URL = import.meta.env.VITE_API_URL?.trim() || "";
+const DEFAULT_API_URL =
+  "https://script.google.com/macros/s/AKfycby5HBxq8785EnHihW6kLvlBjBOyDIb2L7SDjNsFH-KvKInORYv1_ikgWLeLALcbpUbk/exec";
 
-export const MOCK_MODE =
-  import.meta.env.VITE_MOCK_MODE === "true" || API_URL.length === 0;
+export const API_URL =
+  import.meta.env.VITE_API_URL?.trim() || DEFAULT_API_URL;
+
+export const MOCK_MODE = import.meta.env.VITE_MOCK_MODE === "true";
 
 export const STORAGE_KEYS = {
   cart: "sme-om-cart",

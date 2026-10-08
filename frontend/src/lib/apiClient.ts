@@ -585,6 +585,18 @@ async function mockRequest<T>(action: string, payload: Payload): Promise<T> {
   const body = payload as Record<string, any>;
 
   switch (action) {
+    case "getPublicBootstrap": {
+      const products = db.products
+        .filter((product) => product.is_active && !product.is_deleted)
+        .map((product) => ({ ...product, remaining_qty: productRemaining(product) }))
+        .sort((a, b) => a.sort_order - b.sort_order);
+      return ({
+        settings: publicSettings(db.settings),
+        products,
+        server_time: nowIso(),
+      }) as T;
+    }
+
     case "getShopSettingsPublic":
       return publicSettings(db.settings) as T;
 
@@ -1211,7 +1223,10 @@ async function getPublicBootstrap(force = false) {
           90_000,
         );
   } catch (err) {
-    if (err instanceof ApiClientError && err.code === "UNKNOWN_ACTION") {
+    const isUnknownAction =
+      (err instanceof ApiClientError && err.code === "UNKNOWN_ACTION") ||
+      (err instanceof Error && /unknown action|ไม่รู้จัก action/i.test(err.message));
+    if (isUnknownAction) {
       const [settings, productResult] = await Promise.all([
         cachedRequest<ShopSettings>("getShopSettingsPublic", {}, 5 * 60_000),
         cachedRequest<{ products: Product[] }>("getProducts", {}, 2 * 60_000),
