@@ -82,10 +82,12 @@ export function AdminShell() {
     };
     const timer = window.setInterval(run, interval);
     window.addEventListener("focus", run);
+    window.addEventListener("online", run);
     document.addEventListener("visibilitychange", run);
     return () => {
       window.clearInterval(timer);
       window.removeEventListener("focus", run);
+      window.removeEventListener("online", run);
       document.removeEventListener("visibilitychange", run);
     };
   }, [location.pathname, session?.session_token, sync]);

@@ -1,6 +1,6 @@
 # Task Board
 
-Last updated: 2026-05-27
+Last updated: 2026-10-08
 
 ## Done
 
@@ -38,6 +38,9 @@ Last updated: 2026-05-27
 - Set checkout delivery method as the default customer choice
 - Polished mobile UI density for storefront, product cards, cart, checkout, buttons, fields, loading states, and admin navigation
 - Added session-scoped API response cache and request de-duplication for read APIs to reduce repeated Apps Script calls
+- Added automatic storefront refresh on focus/visibility/online recovery while respecting the 90-second soft refresh window
+- Added admin sync recovery when the browser comes back online
+- Added reduced-motion accessibility fallback so 3D loaders and micro-interactions respect the user's OS preference
 
 ## In Progress
 

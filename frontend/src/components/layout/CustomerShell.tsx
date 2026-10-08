@@ -21,6 +21,20 @@ export function CustomerShell() {
 
   useEffect(() => {
     bootstrap().catch(() => undefined);
+
+    const refreshWhenActive = () => {
+      if (document.visibilityState !== "visible" || !navigator.onLine) return;
+      bootstrap().catch(() => undefined);
+    };
+
+    window.addEventListener("focus", refreshWhenActive);
+    window.addEventListener("online", refreshWhenActive);
+    document.addEventListener("visibilitychange", refreshWhenActive);
+    return () => {
+      window.removeEventListener("focus", refreshWhenActive);
+      window.removeEventListener("online", refreshWhenActive);
+      document.removeEventListener("visibilitychange", refreshWhenActive);
+    };
   }, [bootstrap]);
 
   return (
